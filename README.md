@@ -29,7 +29,7 @@ A Laravel-based starter project with Breeze authentication, AdminLTE theme integ
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/your-project.git
+git clone https://github.com/techstackbusinessbd/laravel-starter.git
 cd your-project
 
 # Install backend dependencies
