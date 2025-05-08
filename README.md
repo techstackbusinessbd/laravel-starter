@@ -1,3 +1,61 @@
+# Laravel AdminLTE Starter Project
+
+A Laravel-based starter project with Breeze authentication, AdminLTE theme integration, role & permission system via Spatie, and server-side Datatables using Yajra.
+
+---
+
+## 🚀 Features
+
+- Laravel 10+
+- Laravel Breeze (Authentication)
+- AdminLTE 3 UI Theme
+- Spatie Role & Permission Management
+- Yajra Laravel Datatables (AJAX-based)
+- Dashboard with user role control
+
+---
+
+## 🛠 Requirements
+
+- PHP >= 8.1
+- Composer
+- MySQL or MariaDB
+- Node.js & npm
+- Git
+
+---
+
+## ⚙️ Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/your-project.git
+cd your-project
+
+# Install backend dependencies
+composer install
+
+# Copy .env and generate key
+cp .env.example .env
+php artisan key:generate
+
+# Set your database credentials in .env
+# Then migrate the database
+php artisan migrate
+
+# (Optional) Seed default roles/users
+php artisan db:seed
+
+# Install frontend dependencies and compile assets
+npm install
+npm run dev
+
+# Start the development server
+php artisan serve
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -59,3 +117,6 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
