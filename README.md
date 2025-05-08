@@ -6,7 +6,7 @@ A Laravel-based starter project with Breeze authentication, AdminLTE theme integ
 
 ## 🚀 Features
 
-- Laravel 10+
+- Laravel 12+
 - Laravel Breeze (Authentication)
 - AdminLTE 3 UI Theme
 - Spatie Role & Permission Management
