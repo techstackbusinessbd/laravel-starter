@@ -16,7 +16,7 @@ class InitialSetupSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles = ['Super Admin', 'Admin', 'Officer', 'Customer'];
+        $roles = ['Super Admin', 'Admin', 'Factory Manager', 'Warehouse Manager','Accounts Manager', 'Salesman', 'Customer'];
 
         // Step 1: Create all permissions first
         $permissions = [
