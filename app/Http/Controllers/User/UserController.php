@@ -106,14 +106,14 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-    // Super Admin ডিলিট থেকে রক্ষা
-    if ($user->hasRole('Super Admin')) {
-        return redirect()->back()->with('error', 'Super Admin cannot be deleted!');
-    }
+        // Super Admin ডিলিট থেকে রক্ষা
+        if ($user->hasRole('Super Admin')) {
+            return redirect()->back()->with('error', 'Super Admin cannot be deleted!');
+        }
 
-    $user->delete();
+        $user->delete();
 
-    return redirect()->route('users.index')->with('success', 'User deleted successfully!');
+        return redirect()->route('users.index')->with('success', 'User deleted successfully!');
     }
 
     public function toggleStatus($id)
@@ -121,7 +121,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         // Check if the user is Super Admin
         if ($user->hasRole('Super Admin')) {
-            return redirect()->back()->with('status', 'Super Admin status cannot be inactive.');
+            return redirect()->back()->with('error', 'Super Admin status cannot be inactive.');
         }
         $user->status = !$user->status; // toggle: 1 -> 0, 0 -> 1
         $user->save();

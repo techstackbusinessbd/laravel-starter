@@ -2,11 +2,13 @@
 
 namespace App\Http\Requests\Auth;
 
-use Illuminate\Auth\Events\Lockout;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\RateLimiter;
+use Hash;
+use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Auth\Events\Lockout;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
@@ -39,17 +41,24 @@ class LoginRequest extends FormRequest
      */
     public function authenticate(): void
     {
-        $this->ensureIsNotRateLimited();
+        $user = User::where('email', $this->email)->first();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
-
+        // Check if user exists and password matches
+        if (! $user || ! Hash::check($this->password, $user->password)) {
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
+                'email' => __('The provided credentials do not match our records.'),
             ]);
         }
 
-        RateLimiter::clear($this->throttleKey());
+        // ✅ Check if user is inactive
+        if ($user->status == 0) {
+            throw ValidationException::withMessages([
+                'email' => __('Your account is inactive. Please contact the administrator.'),
+            ]);
+        }
+
+        // 🔐 Now allow login
+        Auth::login($user, $this->boolean('remember'));
     }
 
     /**

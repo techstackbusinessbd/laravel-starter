@@ -318,16 +318,20 @@ return [
         ],
         ['header' => 'Modules'],
         [
-            'text' => 'User Management',
+            'text' => 'Users Management',
             'icon' => 'fas fa-fw fa-users',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
+                    'text' => 'User',
+                    'route' => 'users.index',
                 ],
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
+                    'text' => 'Role',
+                    'route' => 'roles.index',
+                ],
+                [
+                    'text' => 'Permission',
+                    'route' => 'permissions.index',
                 ],
             ],
         ],

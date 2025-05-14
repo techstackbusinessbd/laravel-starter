@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Permission\Models\Permission;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Always ensure super-admin has all permissions
+        $superAdminRole = Role::where('name', 'Super Admin')->first();
+
+        if ($superAdminRole) {
+            $allPermissions = Permission::all();
+            $superAdminRole->syncPermissions($allPermissions);
+        }
     }
 }
